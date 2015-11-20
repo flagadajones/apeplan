@@ -2,13 +2,13 @@
 <solver>
 	<!--<environmentMode>FAST_ASSERT</environmentMode> -->
 	<!-- Domain model configuration -->
-	<solutionClass>com.ape.ApeConfiguration</solutionClass>
-	<planningEntityClass>com.ape.Invite</planningEntityClass>
+	<solutionClass>com.com.ape.ApeConfiguration</solutionClass>
+	<planningEntityClass>com.com.ape.Invite</planningEntityClass>
 
 	<!-- Score configuration -->
 	<scoreDirectorFactory>
 		<scoreDefinitionType>HARD_SOFT</scoreDefinitionType>
-		<simpleScoreCalculatorClass>com.ape.ApeConfigurationScoreCalculator</simpleScoreCalculatorClass>
+		<simpleScoreCalculatorClass>com.com.ape.ApeConfigurationScoreCalculator</simpleScoreCalculatorClass>
 		<!--<scoreDrl>weddingTablesScoreRules.drl</scoreDrl> -->
 	</scoreDirectorFactory>
 
