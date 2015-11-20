@@ -28,8 +28,10 @@ Map<String,List<Invite>> mapBody = new HashMap<>();
         boolean tableOk=false;
         for (String ligne: bodyArray
              ) {
-            if("".equals(ligne))
-                tableOk=true;
+            if("".equals(ligne)) {
+                tableOk = true;
+            continue;
+            }
             String[] cols = ligne.split(";");
             if(!tableOk){
 
