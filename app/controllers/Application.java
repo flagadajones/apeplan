@@ -47,19 +47,9 @@ List<Invite> invites = mapBody.get(cols[2]);
                 Invite invite= new Invite(cols[0].trim(), 0);
                     guests.add(invite);
 
-
+invites.add(invite);
 
                 invite.setNumber(Integer.valueOf(cols[1].trim()));
-
-                if (!cols[2].trim().equals("")) {
-                    Invite close = map.get(cols[2].trim());
-                    if (close == null) {
-                        close = new Invite(cols[2].trim(), -1);
-                        map.put(close.getId(), close);
-                    }
-                    invite.addClose(close);
-                }
-
 
             }
 

@@ -10,8 +10,9 @@ public class ApeTablesPlanner {
 
 	public ApeConfiguration planTables(
 			final ApeConfiguration unsolvedDiningConfiguration) {
-		final SolverFactory solverFactory = new XmlSolverFactory(
-				"/com/ape/apeTablesPlannerConfig.xml");
+		final SolverFactory solverFactory = new ApeXmlSolverFactory(
+				"apeTablesPlannerConfig.xml");
+
 
 		final Solver solver = solverFactory.buildSolver();
 

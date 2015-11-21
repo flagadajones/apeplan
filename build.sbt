@@ -15,5 +15,8 @@ libraryDependencies <+= scalaVersion("org.scala-lang" % "scala-compiler" % _ )
 
 libraryDependencies += "org.optaplanner" % "optaplanner-core" % "6.0.1.Final"
 
+libraryDependencies += "org.drools"%"drools-core"%"6.0.1.Final"
+
 resolvers += "Sonatype OSS Snapshots" at "http://central.maven.org/maven2/"
+
 resolvers += "jboss" at "https://repository.jboss.org/nexus/content/groups/public/"
