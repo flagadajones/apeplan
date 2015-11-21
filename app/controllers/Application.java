@@ -45,6 +45,8 @@ List<Invite> invites = mapBody.get(cols[2]);
                 }
 
                 Invite invite= new Invite(cols[0].trim(), 0);
+
+                invite.setGroupe(Integer.parseInt(cols[2]));
                     guests.add(invite);
 
 invites.add(invite);
@@ -68,6 +70,7 @@ invites.add(invite);
                  ) {
                 if(last!=null){
                     invite.addClose(last);
+                last.addClose(invite);
                 }
                 invite.setGroupeNumber(grpNum);
                 last=invite;
@@ -96,7 +99,7 @@ invites.add(invite);
 
 
 
-        final ApeConfiguration solution = planner.planTables(new ApeConfiguration(tables, tablePositions, guests));
+        final ApeConfiguration solution = planner.planTables(new ApeConfiguration(tables, tablePositions, guests,mapBody));
 
         new ApeConfigurationScoreCalculator().calculateScore(solution);
 

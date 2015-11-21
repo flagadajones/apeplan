@@ -178,7 +178,7 @@ public class Start {
             }
 
         }
-        return new ApeConfiguration(tables, tablePositions, guests);
+        return new ApeConfiguration(tables, tablePositions, guests,null);
     }
 
 }

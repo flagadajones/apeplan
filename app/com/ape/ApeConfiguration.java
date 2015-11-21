@@ -16,12 +16,20 @@ public class ApeConfiguration implements Solution<HardSoftScore> {
 	private Set<Invite> invites;
 	private Set<Table> tables;
 	private List<Erreur> erreurs;
-	
+	Map<String,List<Invite>> mapBody;
 	public void setErreurs(List<Erreur> erreurs) {
 		this.erreurs = erreurs;
 	}
 	public List<Erreur> getErreurs() {
 		return erreurs;
+	}
+
+	public void setMapBody(Map<String, List<Invite>> mapBody) {
+		this.mapBody = mapBody;
+	}
+
+	public Map<String, List<Invite>> getMapBody() {
+		return mapBody;
 	}
 
 	public Set<Table> getTables() {
@@ -33,16 +41,17 @@ public class ApeConfiguration implements Solution<HardSoftScore> {
 	}
 
 	public ApeConfiguration() {
-		this(new HashSet<>(), new HashSet<>(), new HashSet<>());
+		this(new HashSet<>(), new HashSet<>(), new HashSet<>(),null);
 	}
 
 	// public DiningConfiguration(final Set<Table> tables, final Set<Guest>
 	// guests) {
-	public ApeConfiguration(final Set<Table> tables, final Set<TablePosition> tablePos, final Set<Invite> guests) {
+	public ApeConfiguration(final Set<Table> tables, final Set<TablePosition> tablePos, final Set<Invite> guests,Map<String,List<Invite>> mapBody) {
 		super();
 		setPositions(tablePos);
 		setTables(tables);
 		setInvites(guests);
+		setMapBody(mapBody);
 	}
 
 	public void setPositions(Set<TablePosition> positions) {

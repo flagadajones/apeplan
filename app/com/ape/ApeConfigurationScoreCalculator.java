@@ -4,7 +4,9 @@ import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
 import org.optaplanner.core.impl.score.director.simple.SimpleScoreCalculator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ApeConfigurationScoreCalculator implements SimpleScoreCalculator<ApeConfiguration> {
 	public static class Erreur {
@@ -29,19 +31,19 @@ public class ApeConfigurationScoreCalculator implements SimpleScoreCalculator<Ap
 		for (Table table : solution.getTables()) {
 			List<Erreur> err = table.exceededOccupation(solution.getInvites());
 			erreurs.addAll(err);
-			hardScore += 100 * err.size();
+			hardScore += 100000 * err.size();
 		}
 
 		for (Invite invite : solution.getInvites()) {
 			List<Erreur> err = invite.asPlace();
 					erreurs.addAll(err);
-			hardScore += 100 * err.size();
+			hardScore += 100000 * err.size();
 		}
 
 		for (TablePosition table : solution.getPositions()) {
 			List<Erreur> err = table.exceededOccupation(solution.getInvites());
 			erreurs.addAll(err);
-			hardScore += 100 * err.size();
+			hardScore += 100000 * err.size();
 
 		}
 
@@ -49,12 +51,49 @@ public class ApeConfigurationScoreCalculator implements SimpleScoreCalculator<Ap
 		for (Invite invite : solution.getInvites()) {
 			List<Erreur> err =invite.closeToClose();
 			erreurs.addAll(err);
-			hardScore += err.size();
+			hardScore += 1*err.size();
 
 		}
-		System.out.print(hardScore + "/");
+        Map<Integer, List<Invite>> mapBody = new HashMap<>();
 
-		for (Invite invite : solution.getInvites()) {
+        for (Invite invite : solution.getInvites()) {
+
+
+            List<Invite> invites = mapBody.get(invite.getGroupe());
+            if (invites == null) {
+                invites = new ArrayList<Invite>();
+                mapBody.put(invite.getGroupe(), invites);
+            }
+            invites.add(invite);
+
+
+        }
+if(hardScore<100000)
+{
+    int i =0;
+}
+        for (List<Invite> invites : mapBody.values()) {
+        Table table=null;
+            for (Invite invite:invites
+                 ) {
+                if (invite.getPosition()==null)
+                    continue;
+                if(table==null)
+                    table=invite.getPosition().getTable();
+                else
+                    if(! table.equals(invite.getPosition().getTable()))
+                        hardScore+=1000*invites.size();
+            }
+
+
+        }
+
+        //tous les gens du meme groupe sur la meme table
+
+
+            System.out.print(hardScore + "/");
+
+	/*	for (Invite invite : solution.getInvites()) {
 			if (invite.getPosition() != null && invite.getPosition().prev != null) {
 				boolean find = false;
 				for (Invite invite2 : solution.getInvites()) {
@@ -68,6 +107,7 @@ public class ApeConfigurationScoreCalculator implements SimpleScoreCalculator<Ap
 			}
 
 		}
+		*/
 		
 		solution.setErreurs(erreurs);
 		System.out.print(hardScore + "/");
