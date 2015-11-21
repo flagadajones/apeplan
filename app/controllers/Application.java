@@ -58,11 +58,18 @@ invites.add(invite);
         for (List<Invite> invites:mapBody.values()
              ) {
             Invite last =null;
+            int grpNum=0;
+            for (Invite invite : invites
+                    ) {
+                grpNum+=invite.getNumber();
+
+            }
             for (Invite invite : invites
                  ) {
                 if(last!=null){
                     invite.addClose(last);
                 }
+                invite.setGroupeNumber(grpNum);
                 last=invite;
             }
         }

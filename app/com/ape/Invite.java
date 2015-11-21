@@ -14,6 +14,15 @@ public class Invite {
 	String id;
 	int number;
 	TablePosition position;
+	int groupeNumber;
+
+	public int getGroupeNumber() {
+		return groupeNumber;
+	}
+
+	public void setGroupeNumber(int groupeNumber) {
+		this.groupeNumber = groupeNumber;
+	}
 
 	public void setPosition(TablePosition position) {
 
