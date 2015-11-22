@@ -111,7 +111,10 @@ String resultSolution="";
                 lst.sort(new Comparator<Invite>() {
                     @Override
                     public int compare(Invite arg0, Invite arg1) {
-                        return new CompareToBuilder().append( arg0.getPosition().getId(),arg1.getPosition().getId()).toComparison();
+                        return new CompareToBuilder().append( arg0.getPosition().getId(),arg1.getPosition().getId())
+
+                                .append(arg0.getGroupe(),arg1.getGroupe())
+                                .toComparison();
 
                     }
                 });
