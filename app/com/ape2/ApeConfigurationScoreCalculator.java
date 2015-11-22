@@ -69,7 +69,7 @@ public class ApeConfigurationScoreCalculator implements SimpleScoreCalculator<Ap
                     table=invite.getPosition();
                 else
                     if(! table.equals(invite.getPosition())) {
-                        hardScore += 1000 * invite.getGroupeNumber();
+                        hardScore += 1000 ;
 break;
                     }}
 
