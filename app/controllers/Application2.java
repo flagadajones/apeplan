@@ -119,7 +119,7 @@ String resultSolution="";
                     }
                 });
                 for (Invite invite : lst) {
-                    resultSolution+=invite.getPosition().getId() + ";"+0+";"+invite.getId()+";"+invite.getNumber()+"\n";
+                    resultSolution+=invite.getPosition().getId() + ";"+invite.getGroupe()+";"+invite.getId()+";"+invite.getNumber()+"\n";
                 }
 
             }

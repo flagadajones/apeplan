@@ -69,7 +69,8 @@ public class ApeConfigurationScoreCalculator implements SimpleScoreCalculator<Ap
                     table=invite.getPosition();
                 else
                     if(! table.equals(invite.getPosition())) {
-                        hardScore += 1000 ;
+                        hardScore += 10000 ;
+						erreurs.add(new Erreur(String.valueOf(invite.getGroupe()),"n'est pas complet"));
 break;
                     }}
 

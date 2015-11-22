@@ -14,11 +14,11 @@
 
 	<!-- Optimization algorithms configuration -->
 	<termination>
-		<maximumSecondsSpend>15</maximumSecondsSpend>
+		<maximumSecondsSpend>10</maximumSecondsSpend>
 	</termination>
 
 	<constructionHeuristic>
-		<constructionHeuristicType>FIRST_FIT</constructionHeuristicType>
+		<constructionHeuristicType>FIRST_FIT_DECREASING</constructionHeuristicType>
 		<!--<constructionHeuristicType>STRONGEST_FIT</constructionHeuristicType>-->
 		<!--constructionHeuristicType>BEST_FIT_DECREASING</constructionHeuristicType-->
 		<!--<forager>
@@ -28,11 +28,11 @@
 
 	<localSearch>
 		<acceptor>
-			<entityTabuSize>7</entityTabuSize>
+			<entityTabuSize>15</entityTabuSize>
 		</acceptor>
 
 		<forager>
-			<acceptedCountLimit>3000</acceptedCountLimit>
+			<acceptedCountLimit>300</acceptedCountLimit>
 		</forager>
 
 	</localSearch>
