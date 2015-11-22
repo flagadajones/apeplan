@@ -1,28 +1,24 @@
 package controllers;
 
-import com.ape.*;
+import com.ape2.*;
 import org.apache.commons.lang.builder.CompareToBuilder;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 
-import java.io.File;
-import java.io.PrintWriter;
 import java.util.*;
 
 /**
  * Created by Gaetan on 20/11/2015.
  */
-public class Application extends Controller {
+public class Application2 extends Controller {
 
     public static Result index() {
         Set<Table> tables = new HashSet<Table>();
         Map<String, Invite> map = new HashMap<String, Invite>();
        Set<Invite> guests;
-  Set<TablePosition> tablePositions;
-Map<String,List<Invite>> mapBody = new HashMap<>();
+ Map<String,List<Invite>> mapBody = new HashMap<>();
         guests = new HashSet<>();
-        tablePositions = new HashSet<>();
         Http.RequestBody body = request().body();
        String[] bodyArray= body.asText().split("\n");
         boolean tableOk=false;
@@ -78,20 +74,6 @@ invites.add(invite);
         }
 
 
-        for (Table table : tables) {
-            TablePosition prev = null;
-            for (int i = 1; i <= table.getCapacity()/2; i++) {
-                TablePosition pos = new TablePosition(table, i, prev);
-                table.addPlace(pos);
-                tablePositions.add(pos);
-                if (prev != null)
-                    prev.setNext(pos);
-                prev = pos;
-            }
-
-        }
-
-
 
 
 
@@ -99,7 +81,7 @@ invites.add(invite);
 
 
 
-        final ApeConfiguration solution = planner.planTables(new ApeConfiguration(tables, tablePositions, guests,mapBody));
+        final ApeConfiguration solution = planner.planTables(new ApeConfiguration(tables, guests,mapBody));
 
         new ApeConfigurationScoreCalculator().calculateScore(solution);
 
@@ -113,10 +95,10 @@ invites.add(invite);
         for (Invite invite : solution.getInvites()) {
 
             if (invite.getPosition() != null){
-                List<Invite> lstInv = resultByInv.get(invite.getPosition().getTable());
+                List<Invite> lstInv = resultByInv.get(invite.getPosition());
                 if(lstInv==null){
                     lstInv= new ArrayList<Invite>();
-                    resultByInv.put(invite.getPosition().getTable(), lstInv);
+                    resultByInv.put(invite.getPosition(), lstInv);
                 }
                 lstInv.add(invite);
             }
@@ -129,12 +111,12 @@ String resultSolution="";
                 lst.sort(new Comparator<Invite>() {
                     @Override
                     public int compare(Invite arg0, Invite arg1) {
-                        return new CompareToBuilder().append( arg0.getPosition().getPos(),arg1.getPosition().getPos()).toComparison();
+                        return new CompareToBuilder().append( arg0.getPosition().getId(),arg1.getPosition().getId()).toComparison();
 
                     }
                 });
                 for (Invite invite : lst) {
-                    resultSolution+=invite.getPosition().getTable() + ";"+invite.getPosition().getPos()+";"+invite.getId()+";"+invite.getNumber()+"\n";
+                    resultSolution+=invite.getPosition().getId() + ";"+0+";"+invite.getId()+";"+invite.getNumber()+"\n";
                 }
 
             }

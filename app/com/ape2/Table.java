@@ -1,6 +1,6 @@
-package com.ape;
+package com.ape2;
 
-import com.ape.ApeConfigurationScoreCalculator.Erreur;
+import com.ape2.ApeConfigurationScoreCalculator.Erreur;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +10,17 @@ public class Table {
 
 	private final int id;
 	private final int capacity;
+private Invite invite;
 
-	private List<TablePosition> places =new ArrayList<TablePosition>();
-	
-	public void addPlace(TablePosition pos){
-		places.add(pos);
+	public void setInvite(Invite invite) {
+		this.invite = invite;
 	}
-	
+
+	public Invite getInvite() {
+		return invite;
+	}
+
+
 	public Table() {
 		this(-1, -1);
 	}
@@ -69,9 +73,9 @@ public class Table {
 
 	public List<Erreur> exceededOccupation(Set<Invite> invites) {
 		int size=0;
-		List<Erreur> err= new ArrayList<ApeConfigurationScoreCalculator.Erreur>();
+		List<Erreur> err= new ArrayList<Erreur>();
 		for (Invite invite : invites) {
-			if(invite.getPosition()!=null && this.equals(invite.getPosition().getTable()))
+			if(invite.getPosition()!=null && this.equals(invite.getPosition()))
 				size+=invite.getNumber();
 		}
 		if(capacity < size){

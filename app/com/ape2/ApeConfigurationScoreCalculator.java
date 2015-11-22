@@ -1,4 +1,4 @@
-package com.ape;
+package com.ape2;
 
 import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
 import org.optaplanner.core.impl.score.director.simple.SimpleScoreCalculator;
@@ -40,20 +40,10 @@ public class ApeConfigurationScoreCalculator implements SimpleScoreCalculator<Ap
 			hardScore += 100000 * err.size();
 		}
 
-		for (TablePosition table : solution.getPositions()) {
-			List<Erreur> err = table.exceededOccupation(solution.getInvites());
-			erreurs.addAll(err);
-			hardScore += 100000 * err.size();
 
-		}
 
 		System.out.print(hardScore + "/");
-		for (Invite invite : solution.getInvites()) {
-			List<Erreur> err =invite.closeToClose();
-			erreurs.addAll(err);
-			hardScore += 1*err.size();
 
-		}
         Map<Integer, List<Invite>> mapBody = new HashMap<>();
 
         for (Invite invite : solution.getInvites()) {
@@ -76,9 +66,9 @@ public class ApeConfigurationScoreCalculator implements SimpleScoreCalculator<Ap
                 if (invite.getPosition()==null)
                     continue;
                 if(table==null)
-                    table=invite.getPosition().getTable();
+                    table=invite.getPosition();
                 else
-                    if(! table.equals(invite.getPosition().getTable())) {
+                    if(! table.equals(invite.getPosition())) {
                         hardScore += 1000 * invite.getGroupeNumber();
 break;
                     }}
@@ -91,20 +81,7 @@ break;
 
             System.out.print(hardScore + "/");
 
-		for (Invite invite : solution.getInvites()) {
-			if (invite.getPosition() != null && invite.getPosition().prev != null) {
-				boolean find = false;
-				for (Invite invite2 : solution.getInvites()) {
-					if (invite.getPosition().prev.equals(invite2.getPosition()))
-						find = true;
 
-				}
-				if (!find) {
-					score += 100;
-				}
-			}
-
-		}
 
 		
 		solution.setErreurs(erreurs);
