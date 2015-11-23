@@ -14,7 +14,7 @@
 
 	<!-- Optimization algorithms configuration -->
 	<termination>
-		<maximumSecondsSpend>10</maximumSecondsSpend>
+		<maximumSecondsSpend>5</maximumSecondsSpend>
 	</termination>
 
 	<constructionHeuristic>
@@ -28,11 +28,11 @@
 
 	<localSearch>
 		<acceptor>
-			<entityTabuSize>15</entityTabuSize>
+			<entityTabuSize>7</entityTabuSize>
 		</acceptor>
 
 		<forager>
-			<acceptedCountLimit>300</acceptedCountLimit>
+			<acceptedCountLimit>3000</acceptedCountLimit>
 		</forager>
 
 	</localSearch>

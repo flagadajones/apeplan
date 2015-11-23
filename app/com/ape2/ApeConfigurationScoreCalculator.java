@@ -1,7 +1,8 @@
 package com.ape2;
 
 import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
-import org.optaplanner.core.impl.score.director.simple.SimpleScoreCalculator;
+import org.optaplanner.core.impl.score.director.simple
+        .SimpleScoreCalculator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,13 +32,13 @@ public class ApeConfigurationScoreCalculator implements SimpleScoreCalculator<Ap
 		for (Table table : solution.getTables()) {
 			List<Erreur> err = table.exceededOccupation(solution.getInvites());
 			erreurs.addAll(err);
-			hardScore += 100000 * err.size();
+			hardScore += 1000 * err.size();
 		}
 
 		for (Invite invite : solution.getInvites()) {
 			List<Erreur> err = invite.asPlace();
 					erreurs.addAll(err);
-			hardScore += 100000 * err.size();
+			hardScore += 1000 * err.size();
 		}
 
 
@@ -69,9 +70,9 @@ public class ApeConfigurationScoreCalculator implements SimpleScoreCalculator<Ap
                     table=invite.getPosition();
                 else
                     if(! table.equals(invite.getPosition())) {
-                        hardScore += 10000 ;
+                        hardScore += 10 *invite.getGroupeNumber() ;
 						erreurs.add(new Erreur(String.valueOf(invite.getGroupe()),"n'est pas complet"));
-break;
+
                     }}
 
 

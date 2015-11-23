@@ -5,4 +5,5 @@
 # Home page
 #POST     /                           controllers.Application.index()
 
-POST     /                           controllers.Application2.index()
+#POST     /                           controllers.Application2.index()
+POST     /                           controllers.Application3.index()
