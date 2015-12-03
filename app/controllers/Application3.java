@@ -132,6 +132,7 @@ String resultSolution="";
                         return new CompareToBuilder().append( arg0.getPosition().getId(),arg1.getPosition().getId())
 
                                 .append(arg0.getGroupe(),arg1.getGroupe())
+                                .append(arg0.getGroupeNumber()%2,arg1.getGroupeNumber()%2)
                                 .toComparison();
 
                     }
