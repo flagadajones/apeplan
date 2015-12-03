@@ -131,7 +131,7 @@ String resultSolution="";
                     public int compare(Invite arg0, Invite arg1) {
                         return new CompareToBuilder().append( arg0.getPosition().getId(),arg1.getPosition().getId())
 
-                                .append(arg0.getGroupeNumber()%2,arg1.getGroupeNumber()%2)
+                                .append(arg0.getNumber()%2,arg1.getNumber()%2)
                                 .append(arg0.getGroupe(),arg1.getGroupe())
 
                                 .toComparison();
