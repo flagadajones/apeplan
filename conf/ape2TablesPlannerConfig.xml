@@ -14,7 +14,7 @@
 
 	<!-- Optimization algorithms configuration -->
 	<termination>
-		<maximumSecondsSpend>5</maximumSecondsSpend>
+		<maximumSecondsSpend>25</maximumSecondsSpend>
 	</termination>
 
 	<constructionHeuristic>
