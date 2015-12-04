@@ -32,13 +32,13 @@ public class ApeConfigurationScoreCalculator implements SimpleScoreCalculator<Ap
 		for (Table table : solution.getTables()) {
 			List<Erreur> err = table.exceededOccupation(solution.getInvites());
 			erreurs.addAll(err);
-			hardScore += 1000 * err.size();
+			hardScore += 10000 * err.size();
 		}
 
 		for (Invite invite : solution.getInvites()) {
 			List<Erreur> err = invite.asPlace();
 					erreurs.addAll(err);
-			hardScore += 1000 * err.size();
+			hardScore += 10000 * err.size();
 		}
 
 
