@@ -139,9 +139,9 @@ String resultSolution="";
 
 
                         if(arg0.getNumber()%2==0)
-                            cmp.append(arg0.getContrainte(),arg1.getContrainte());
-                        else
                             cmp.append(arg1.getContrainte(),arg0.getContrainte());
+                        else
+                            cmp.append(arg0.getContrainte(),arg1.getContrainte());
 
                         return cmp
                                 .append(arg0.getNumber()%2,arg1.getNumber()%2)
