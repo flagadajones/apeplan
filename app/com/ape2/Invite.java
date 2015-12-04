@@ -16,8 +16,17 @@ public class Invite {
 	Table position;
 	int groupeNumber;
     int groupe;
+	String contrainte;
 
-    public int getGroupe() {
+	public void setContrainte(String contrainte) {
+		this.contrainte = contrainte;
+	}
+
+	public String getContrainte() {
+		return contrainte;
+	}
+
+	public int getGroupe() {
         return groupe;
     }
 

@@ -43,6 +43,7 @@ List<Invite> invites = mapBody.get(cols[2]);
                 Invite invite= new Invite(cols[0].trim(), 0);
 
                 invite.setGroupe(Integer.parseInt(cols[2]));
+                invite.setContrainte(cols[3]);
                     guests.add(invite);
 
 invites.add(invite);
@@ -59,10 +60,13 @@ invites.add(invite);
              ) {
             Invite last =null;
             int grpNum=0;
+               String contrainte="";
             for (Invite invite : invites
                     ) {
                 grpNum+=invite.getNumber();
-
+if(!"".equals(invite.getContrainte())){
+    contrainte=invite.getContrainte();
+}
             }
 
             for (Invite invite : invites
@@ -72,6 +76,7 @@ invites.add(invite);
                 //last.addClose(invite);
                 }
                 invite.setGroupeNumber(grpNum);
+                invite.setContrainte(contrainte);
                 last=invite;
             }
         }
@@ -81,6 +86,7 @@ invites.add(invite);
         for (String grp : mapBody.keySet()){
             Invite ne= new Invite();
             ne.setNumber(mapBody.get(grp).get(0).getGroupeNumber());
+            ne.setContrainte(mapBody.get(grp).get(0).getContrainte());
             ne.setId(grp);
             ne.setGroupe(Integer.parseInt(grp));
             g2.add(ne);
@@ -129,9 +135,16 @@ String resultSolution="";
                 lst.sort(new Comparator<Invite>() {
                     @Override
                     public int compare(Invite arg0, Invite arg1) {
-                        return new CompareToBuilder().append( arg0.getPosition().getId(),arg1.getPosition().getId())
+                        CompareToBuilder cmp=new CompareToBuilder().append( arg0.getPosition().getId(),arg1.getPosition().getId())
 
-                                .append(arg0.getNumber()%2,arg1.getNumber()%2)
+                                .append(arg0.getNumber()%2,arg1.getNumber()%2);
+
+                        if(arg0.getNumber()%2==0)
+                            cmp.append(arg0.getContrainte(),arg1.getContrainte());
+                        else
+                            cmp.append(arg1.getContrainte(),arg0.getContrainte());
+
+                        return cmp
                                 .append(arg0.getGroupe(),arg1.getGroupe())
 
                                 .toComparison();
