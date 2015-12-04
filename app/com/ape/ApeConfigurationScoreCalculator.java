@@ -90,7 +90,7 @@ break;
 
 
             System.out.print(hardScore + "/");
-
+/*
 		for (Invite invite : solution.getInvites()) {
 			if (invite.getPosition() != null && invite.getPosition().prev != null) {
 				boolean find = false;
@@ -106,7 +106,7 @@ break;
 
 		}
 
-		
+*/
 		solution.setErreurs(erreurs);
 		System.out.print(hardScore + "/");
 		System.out.println(score);
