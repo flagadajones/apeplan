@@ -135,9 +135,8 @@ String resultSolution="";
                 lst.sort(new Comparator<Invite>() {
                     @Override
                     public int compare(Invite arg0, Invite arg1) {
-                        CompareToBuilder cmp=new CompareToBuilder().append( arg0.getPosition().getId(),arg1.getPosition().getId())
+                        CompareToBuilder cmp=new CompareToBuilder().append( arg0.getPosition().getId(),arg1.getPosition().getId());
 
-                                .append(arg0.getNumber()%2,arg1.getNumber()%2);
 
                         if(arg0.getNumber()%2==0)
                             cmp.append(arg0.getContrainte(),arg1.getContrainte());
@@ -145,7 +144,9 @@ String resultSolution="";
                             cmp.append(arg1.getContrainte(),arg0.getContrainte());
 
                         return cmp
-                                .append(arg0.getGroupe(),arg1.getGroupe())
+                                .append(arg0.getNumber()%2,arg1.getNumber()%2)
+
+                        .append(arg0.getGroupe(),arg1.getGroupe())
 
                                 .toComparison();
 
