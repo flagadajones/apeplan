@@ -83,7 +83,9 @@ private Invite invite;
 		//	for (Invite invite : invites) {
 		//		System.out.println(invite);
 		//	}
-			err.add(new Erreur(String.valueOf(this.id),"Trop de monde sur cette table"));
+			for(int i =0;i<(size-capacity);i++) {
+				err.add(new Erreur(String.valueOf(this.id), "Trop de monde sur cette table"));
+			}
 		}
 		return err;
 	}
