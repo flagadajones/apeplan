@@ -137,9 +137,9 @@ String resultSolution="";
                         CompareToBuilder cmp=new CompareToBuilder();//.append( arg0.getPosition().getId(),arg1.getPosition().getId());
 
 
-                        if(arg0.getNumber()%2==0)
+                        if(arg0.getNumber()%2==0 && arg1.getNumber()%2==0)
                             cmp.append(arg1.getContrainte(),arg0.getContrainte());
-                        else
+                        else if(arg0.getNumber()%2!=0 && arg1.getNumber()%2!=0)
                             cmp.append(arg0.getContrainte(),arg1.getContrainte());
 
                         return cmp
