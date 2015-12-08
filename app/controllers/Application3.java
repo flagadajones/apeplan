@@ -12,7 +12,20 @@ import java.util.*;
  * Created by Gaetan on 20/11/2015.
  */
 public class Application3 extends Controller {
-
+private static class Tab{
+public int id;
+public int nb;
+}
+private static class Invites{
+public String id;
+public int nb;
+public int grp;
+public String cte;
+}
+private static class Content{
+public List<Tab> tables;
+public List<Inv> invites;
+}
     public static Result index() {
         Set<Table> tables = new HashSet<Table>();
         Map<String, Invite> map = new HashMap<String, Invite>();
@@ -20,38 +33,31 @@ public class Application3 extends Controller {
  Map<String,List<Invite>> mapBody = new HashMap<>();
         guests = new HashSet<>();
         Http.RequestBody body = request().body();
-		System.out.println(body.asText());
-       String[] bodyArray= body.asText().split("\n");
-        boolean tableOk=false;
-        for (String ligne: bodyArray
-             ) {
-            if("".equals(ligne)) {
-                tableOk = true;
-            continue;
-            }
-            String[] cols = ligne.split(";");
-            if(!tableOk){
-
-                tables.add(new Table(Integer.valueOf(cols[0].trim()), Integer.valueOf(cols[1].trim())));
-            }
-            else{
-List<Invite> invites = mapBody.get(cols[2]);
+		
+		Content content= Json.fromJson(request().body().asJson(), Content.class);
+		
+        for (Tab tab: content.tables  ) {
+                tables.add(new Table(tab.id, tab.nb));
+		}
+		for(Inv inv :content.invites){
+		
+List<Invite> invites = mapBody.get(inv.grp);
                 if(invites==null){
                     invites= new ArrayList<Invite>();
-                    mapBody.put(cols[2],invites);
+                    mapBody.put(inv.grp,invites);
                 }
 
-                Invite invite= new Invite(cols[0].trim(), 0);
+                Invite invite= new Invite(inv.id, 0);
 
-                invite.setGroupe(Integer.parseInt(cols[2]));
-                invite.setContrainte(cols[3]);
+                invite.setGroupe(inv.grp);
+                invite.setContrainte(inv.cte);
                     guests.add(invite);
 
 invites.add(invite);
 
-                invite.setNumber(Integer.valueOf(cols[1].trim()));
+                invite.setNumber(inv.nb);
 
-            }
+            
 
         }
 
