@@ -145,7 +145,7 @@ String resultSolution="";
                         return cmp
                                 .append(arg0.getNumber()%2,arg1.getNumber()%2)
 
-                        .append(arg0.getGroupe(),arg1.getGroupe())
+                      //  .append(arg0.getGroupe(),arg1.getGroupe())
 
                                 .toComparison();
 
@@ -154,7 +154,7 @@ String resultSolution="";
                 for (Invite inviteG : lst) {
                     for (Invite invite : mapBody.get( String.valueOf(inviteG.getGroupe()))) {
 
-                        resultSolution+=inviteG.getPosition().getId() + ";"+invite.getGroupe()+";"+invite.getId()+";"+invite.getNumber()+"\n";
+                        resultSolution+=inviteG.getPosition().getId() + ";"+invite.getGroupe()+";"+invite.getId()+";"+invite.getNumber()+";"+inviteG.getContrainte()+"\n";
                 }
                 }
 
