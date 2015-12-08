@@ -44,7 +44,7 @@ public List<Application3.Invites> invites;
 List<Invite> invites = mapBody.get(String.valueOf(inv.grp));
                 if(invites==null){
                     invites= new ArrayList<Invite>();
-                    mapBody.put(String.valueOf(inv.grp)),invites);
+                    mapBody.put(String.valueOf(inv.grp),invites);
                 }
 
                 Invite invite= new Invite(inv.id, 0);
