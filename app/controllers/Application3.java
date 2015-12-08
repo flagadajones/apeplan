@@ -152,11 +152,13 @@ String resultSolution="";
                     }
                 });
                 for (Invite inviteG : lst) {
-                    for (Invite invite : mapBody.get( String.valueOf(inviteG.getGroupe()))) {
+                System.out.print(""+inviteG.getGroupe()+" - ");
+				for (Invite invite : mapBody.get( String.valueOf(inviteG.getGroupe()))) {
 
                         resultSolution+=inviteG.getPosition().getId() + ";"+invite.getGroupe()+";"+invite.getId()+";"+invite.getNumber()+";"+inviteG.getContrainte()+"\n";
                 }
                 }
+				System.out.println("");
 
             }
         resultSolution+="\n";
