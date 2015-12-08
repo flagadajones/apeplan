@@ -99,7 +99,7 @@ private Invite invite;
 			}
 		}
 		if(count > 2){
-			for(int i =0;i<(size-capacity);i++) {
+			for(int i =0;i<(count-2);i++) {
 					err.add(new Erreur(String.valueOf(this.id), "Trop de monde en bout de table sur cette table"));
 				}
 		}
