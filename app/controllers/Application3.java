@@ -29,19 +29,18 @@ public List<Application3.Invites> invites;
     public static Result index() {
         Set<Table> tables = new HashSet<Table>();
         Map<String, Invite> map = new HashMap<String, Invite>();
-       Set<Invite> guests;
- Map<String,List<Invite>> mapBody = new HashMap<>();
+        Set<Invite> guests;
+		Map<String,List<Invite>> mapBody = new HashMap<>();
         guests = new HashSet<>();
         Http.RequestBody body = request().body();
 		
 		Application3.Content content= Json.fromJson(request().body().asJson(), Application3.Content.class);
 		
         for (Tab tab: content.tables  ) {
-                tables.add(new Table(tab.id, tab.nb));
+            tables.add(new Table(tab.id, tab.nb));
 		}
 		for(Invites inv :content.invites){
-		
-List<Invite> invites = mapBody.get(String.valueOf(inv.grp));
+				List<Invite> invites = mapBody.get(String.valueOf(inv.grp));
                 if(invites==null){
                     invites= new ArrayList<Invite>();
                     mapBody.put(String.valueOf(inv.grp),invites);
@@ -51,29 +50,22 @@ List<Invite> invites = mapBody.get(String.valueOf(inv.grp));
 
                 invite.setGroupe(inv.grp);
                 invite.setContrainte(inv.cte);
-                    guests.add(invite);
-
-invites.add(invite);
-
+                guests.add(invite);
+				invites.add(invite);
                 invite.setNumber(inv.nb);
-
-            
-
         }
 
 
 
-           for (List<Invite> invites:mapBody.values()
-             ) {
-            Invite last =null;
-            int grpNum=0;
-               String contrainte="";
-            for (Invite invite : invites
-                    ) {
-                grpNum+=invite.getNumber();
-if(!"".equals(invite.getContrainte())){
-    contrainte=invite.getContrainte();
-}
+           for (List<Invite> invites:mapBody.values() ) {
+				Invite last =null;
+				int grpNum=0;
+				String contrainte="";
+				for (Invite invite : invites) {
+				    grpNum+=invite.getNumber();
+					if(!"".equals(invite.getContrainte().trim())){
+						contrainte=invite.getContrainte().trim();
+					}
             }
 
             for (Invite invite : invites
