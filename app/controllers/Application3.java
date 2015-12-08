@@ -23,8 +23,8 @@ public int grp;
 public String cte;
 }
 private static class Content{
-public List<Tab> tables;
-public List<Inv> invites;
+public List<Application3.Tab> tables;
+public List<Application3.Inv> invites;
 }
     public static Result index() {
         Set<Table> tables = new HashSet<Table>();
@@ -34,7 +34,7 @@ public List<Inv> invites;
         guests = new HashSet<>();
         Http.RequestBody body = request().body();
 		
-		Content content= Json.fromJson(request().body().asJson(), Content.class);
+		Application3.Content content= Json.fromJson(request().body().asJson(), Application3.Content.class);
 		
         for (Tab tab: content.tables  ) {
                 tables.add(new Table(tab.id, tab.nb));
