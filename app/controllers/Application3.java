@@ -151,6 +151,29 @@ String resultSolution="";
 
                     }
                 });
+				int debut = 0;
+				int fin = 0;
+				if (lst.size() > 2) {
+					for (int i = 0; i < lst.size(); i++) {
+						Invite te = lst.get(i);
+						if ("B".equals(te.cte)) {
+							if (i < 2) {
+								debut++;
+							} else if (i > lst.size() - 3) {
+								fin++;
+							}
+						}
+					}
+				}
+				if (debut == 2) {
+					Invite te = lst.remove(0);
+					lst.add(te);
+				}
+				if (fin == 2) {
+					Invite te = lst.remove(lst.size() - 1);
+					lst.add(0, te);
+				}
+				
                 for (Invite inviteG : lst) {
                 System.out.print(""+inviteG.getGroupe()+inviteG.getContrainte()+" - ");
 				for (Invite invite : mapBody.get( String.valueOf(inviteG.getGroupe()))) {

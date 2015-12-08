@@ -89,5 +89,21 @@ private Invite invite;
 		}
 		return err;
 	}
+	
+	public List<Erreur> exceededBoutTable(Set<Invite> invites) {
+		int count=0;
+		List<Erreur> err= new ArrayList<Erreur>();
+		for (Invite invite : invites) {
+			if("B".equals(invite.getContrainte().trim())){
+			count++;
+			}
+		}
+		if(count > 2){
+			for(int i =0;i<(size-capacity);i++) {
+					err.add(new Erreur(String.valueOf(this.id), "Trop de monde en bout de table sur cette table"));
+				}
+		}
+		return err;
+	}
 
 }
