@@ -39,7 +39,7 @@ public List<Application3.Invites> invites;
         for (Tab tab: content.tables  ) {
                 tables.add(new Table(tab.id, tab.nb));
 		}
-		for(Inv inv :content.invites){
+		for(Invites inv :content.invites){
 		
 List<Invite> invites = mapBody.get(inv.grp);
                 if(invites==null){
