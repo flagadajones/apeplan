@@ -43,7 +43,7 @@ public class ApeConfigurationScoreCalculator implements SimpleScoreCalculator<Ap
 
 
 
-		System.out.print(hardScore + "/");
+	//	System.out.print(hardScore + "/");
 
         Map<Integer, List<Invite>> mapBody = new HashMap<>();
 
@@ -81,14 +81,14 @@ public class ApeConfigurationScoreCalculator implements SimpleScoreCalculator<Ap
         //tous les gens du meme groupe sur la meme table
 
 
-            System.out.print(hardScore + "/");
+       //     System.out.print(hardScore + "/");
 
 
 
 		
 		solution.setErreurs(erreurs);
-		System.out.print(hardScore + "/");
-		System.out.println(score);
+		//System.out.print(hardScore + "/");
+		//System.out.println(score);
 		// System.out.println(hardScore + "/" +score);
 		return HardSoftScore.valueOf(-hardScore, -score);
 	}
