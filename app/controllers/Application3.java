@@ -24,7 +24,7 @@ public String cte;
 }
 private static class Content{
 public List<Application3.Tab> tables;
-public List<Application3.Inv> invites;
+public List<Application3.Invites> invites;
 }
     public static Result index() {
         Set<Table> tables = new HashSet<Table>();
