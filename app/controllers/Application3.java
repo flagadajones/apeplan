@@ -41,10 +41,10 @@ public List<Application3.Invites> invites;
 		}
 		for(Invites inv :content.invites){
 		
-List<Invite> invites = mapBody.get(inv.grp);
+List<Invite> invites = mapBody.get(String.valueOf(inv.grp));
                 if(invites==null){
                     invites= new ArrayList<Invite>();
-                    mapBody.put(inv.grp,invites);
+                    mapBody.put(String.valueOf(inv.grp)),invites);
                 }
 
                 Invite invite= new Invite(inv.id, 0);
