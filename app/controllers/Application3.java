@@ -134,7 +134,7 @@ String resultSolution="";
                 lst.sort(new Comparator<Invite>() {
                     @Override
                     public int compare(Invite arg0, Invite arg1) {
-                        CompareToBuilder cmp=new CompareToBuilder().append( arg0.getPosition().getId(),arg1.getPosition().getId());
+                        CompareToBuilder cmp=new CompareToBuilder();//.append( arg0.getPosition().getId(),arg1.getPosition().getId());
 
 
                         if(arg0.getNumber()%2==0)
