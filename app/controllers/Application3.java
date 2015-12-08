@@ -20,6 +20,7 @@ public class Application3 extends Controller {
  Map<String,List<Invite>> mapBody = new HashMap<>();
         guests = new HashSet<>();
         Http.RequestBody body = request().body();
+		System.out.println(body);
        String[] bodyArray= body.asText().split("\n");
         boolean tableOk=false;
         for (String ligne: bodyArray
