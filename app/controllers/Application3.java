@@ -156,7 +156,7 @@ String resultSolution="";
 				if (lst.size() > 2) {
 					for (int i = 0; i < lst.size(); i++) {
 						Invite te = lst.get(i);
-						if ("B".equals(te.cte)) {
+						if ("B".equals(te.getContrainte())) {
 							if (i < 2) {
 								debut++;
 							} else if (i > lst.size() - 3) {
