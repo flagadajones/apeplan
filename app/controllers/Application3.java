@@ -80,14 +80,29 @@ public List<Application3.Invites> invites;
             }
         }
         Set<Invite> g2=new HashSet<>();
-
-
+Map<Integer,Invite> groupes= new HashMap<Integer,Invite>();
         for (String grp : mapBody.keySet()){
-            Invite ne= new Invite();
+
+            Invite ne=groupes.get(Integer.parseInt(grp)) ;
+            if(ne==null) {
+                ne = new Invite();
+            groupes.put(Integer.parseInt(grp),ne);
+            }
             ne.setNumber(mapBody.get(grp).get(0).getGroupeNumber());
             ne.setContrainte(mapBody.get(grp).get(0).getContrainte());
             ne.setId(grp);
             ne.setGroupe(Integer.parseInt(grp));
+String cte =ne.getContrainte();
+            if(cte.startsWith("D")){
+                String grpDeteste=cte.substring(cte.indexOf("(")+1,cte.indexOf(")")-1);
+                Invite invDeteste=groupes.get(Integer.parseInt(grpDeteste));
+                if(invDeteste==null){
+                    invDeteste=new Invite();
+                    groupes.put(Integer.parseInt(grpDeteste),invDeteste);
+
+                }
+                ne.getDeteste().add(invDeteste);
+            }
             g2.add(ne);
         }
 

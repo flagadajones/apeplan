@@ -47,8 +47,15 @@ public class ApeConfigurationScoreCalculator implements SimpleScoreCalculator<Ap
 			hardScore += 10000 * err.size();
 		}
 
+		for (Invite invite : solution.getInvites()) {
+			List<Erreur> err = invite.isNoteProcheDeteste(solution.getInvites());
+			erreurs.addAll(err);
+			hardScore += 10 * err.size();
+		}
 
-	//	System.out.print(hardScore + "/");
+
+
+			//	System.out.print(hardScore + "/");
 
         Map<Integer, List<Invite>> mapBody = new HashMap<>();
 

@@ -18,6 +18,16 @@ public class Invite {
     int groupe;
 	String contrainte;
 
+	public List<Invite> deteste=new ArrayList<Invite>();
+
+	public List<Invite> getDeteste() {
+		return deteste;
+	}
+
+	public void setDeteste(List<Invite> deteste) {
+		this.deteste = deteste;
+	}
+
 	public void setContrainte(String contrainte) {
 		this.contrainte = contrainte;
 	}
@@ -61,6 +71,24 @@ public class Invite {
 		if (position == null)
 			err.add(new Erreur(String.valueOf(this.id),"N'a pas de place assise"));
 		return err;
+	}
+
+	public List<Erreur> isNoteProcheDeteste(Set<Invite> invites){
+		List<Erreur> err= new ArrayList<Erreur>();
+if(position==null)
+	return err;
+		for(Invite inviteDet : deteste) {
+			for (Invite invite : invites) {
+				if (invite.equals(inviteDet)) {
+					if (invite.position == null)
+						return err;
+					if (invite.position.getId() > position.getId() - 2 && invite.position.getId() < position.getId() + 2)
+						err.add(new Erreur(String.valueOf(this.id), " est trop proche de " + invite.getGroupe()));
+					break;
+				}
+			}
+		}
+			return err;
 	}
 
 	private final Set<Invite> close = new HashSet<>();
