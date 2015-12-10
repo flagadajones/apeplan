@@ -98,7 +98,7 @@ private Invite invite;
 			count++;
 			}
 		}
-		if(count > 1){
+		if(count > 2){
 			for(int i =0;i<(count-1);i++) {
 					err.add(new Erreur(String.valueOf(this.id), "Trop de monde en bout de table sur cette table"));
 				}

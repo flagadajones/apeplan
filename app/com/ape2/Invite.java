@@ -73,13 +73,14 @@ public class Invite {
 		return err;
 	}
 
-	public List<Erreur> isNoteProcheDeteste(Set<Invite> invites){
+	public List<Erreur> isNotProcheDeteste(Set<Invite> invites){
 		List<Erreur> err= new ArrayList<Erreur>();
 if(position==null)
 	return err;
 		for(Invite inviteDet : deteste) {
 			for (Invite invite : invites) {
-				if (invite.equals(inviteDet)) {
+				if (invite.getGroupe()==inviteDet.getGroupe()) {
+
 					if (invite.position == null)
 						return err;
 					if (invite.position.getId() > position.getId() - 2 && invite.position.getId() < position.getId() + 2)

@@ -48,7 +48,7 @@ public class ApeConfigurationScoreCalculator implements SimpleScoreCalculator<Ap
 		}
 
 		for (Invite invite : solution.getInvites()) {
-			List<Erreur> err = invite.isNoteProcheDeteste(solution.getInvites());
+			List<Erreur> err = invite.isNotProcheDeteste(solution.getInvites());
 			erreurs.addAll(err);
 			hardScore += 10 * err.size();
 		}
