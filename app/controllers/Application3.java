@@ -95,6 +95,7 @@ Map<Integer,Invite> groupes= new HashMap<Integer,Invite>();
 String cte =ne.getContrainte();
             if(cte.startsWith("D")){
                 String grpDeteste=cte.substring(cte.indexOf("(")+1,cte.indexOf(")")-1);
+                System.out.println(cte + " "+ grpDeteste);
                 Invite invDeteste=groupes.get(Integer.parseInt(grpDeteste));
                 if(invDeteste==null){
                     invDeteste=new Invite();
