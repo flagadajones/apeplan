@@ -93,12 +93,14 @@ private Invite invite;
 	public List<Erreur> exceededBoutTable(Set<Invite> invites) {
 		int count=0;
 		List<Erreur> err= new ArrayList<Erreur>();
+		System.out.println("###############");
 		for (Invite invite : invites) {
 			if("B".equals(invite.getContrainte().trim())){
-			count++;
+			System.out.println(id+ " "+invite.getGroupe()+ " "+invite.getContrainte());
+				count++;
 			}
 		}
-		if(count > 2){
+		if(count > 1){
 			for(int i =0;i<(count-1);i++) {
 					err.add(new Erreur(String.valueOf(this.id), "Trop de monde en bout de table sur cette table"));
 				}
