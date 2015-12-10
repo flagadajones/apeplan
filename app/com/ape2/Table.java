@@ -93,11 +93,11 @@ private Invite invite;
 	public List<Erreur> exceededBoutTable(Set<Invite> invites) {
 		int count=0;
 		List<Erreur> err= new ArrayList<Erreur>();
-		System.out.println("###############");
 		for (Invite invite : invites) {
-			if("B".equals(invite.getContrainte().trim())){
-			System.out.println(id+ " "+invite.getGroupe()+ " "+invite.getContrainte());
-				count++;
+			if(this.equals(invite.getPosition())) {
+				if ("B".equals(invite.getContrainte().trim())) {
+					count++;
+				}
 			}
 		}
 		if(count > 1){

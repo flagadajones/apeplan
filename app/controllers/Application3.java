@@ -1,6 +1,7 @@
 package controllers;
 
 import com.ape2.*;
+import com.google.common.collect.Lists;
 import org.apache.commons.lang.builder.CompareToBuilder;
 import play.mvc.Controller;
 import play.mvc.Http;
@@ -95,7 +96,7 @@ Map<Integer,Invite> groupes= new HashMap<Integer,Invite>();
 String cte =ne.getContrainte();
             if(cte.startsWith("D")){
                 String grpDeteste=cte.replace("D","").replace("(","").replace(")","");
-                System.out.println(cte + " "+ grpDeteste);
+              //  System.out.println(cte + " "+ grpDeteste);
                 Invite invDeteste=groupes.get(Integer.parseInt(grpDeteste));
                 if(invDeteste==null){
                     invDeteste=new Invite();
@@ -153,10 +154,10 @@ String resultSolution="";
                         CompareToBuilder cmp=new CompareToBuilder();//.append( arg0.getPosition().getId(),arg1.getPosition().getId());
 
 
-                        if(arg0.getNumber()%2==0 && arg1.getNumber()%2==0)
-                            cmp.append(arg1.getContrainte(),arg0.getContrainte());
-                        else if(arg0.getNumber()%2!=0 && arg1.getNumber()%2!=0)
-                            cmp.append(arg0.getContrainte(),arg1.getContrainte());
+                     //   if(arg0.getNumber()%2==0 && arg1.getNumber()%2==0)
+                     //       cmp.append(arg1.getContrainte(),arg0.getContrainte());
+                     //   else if(arg0.getNumber()%2!=0 && arg1.getNumber()%2!=0)
+                     //       cmp.append(arg0.getContrainte(),arg1.getContrainte());
 
                         return cmp
                                 .append(arg0.getNumber()%2,arg1.getNumber()%2)
@@ -167,31 +168,25 @@ String resultSolution="";
 
                     }
                 });
-				int debut = 0;
-				int fin = 0;
-				if (lst.size() > 2) {
-					for (int i = 0; i < lst.size(); i++) {
-						Invite te = lst.get(i);
-						if ("B".equals(te.getContrainte())) {
-							if (i < 2) {
-								debut++;
-							} else if (i > lst.size() - 3) {
-								fin++;
-							}
-						}
-					}
-				}
-				if (debut == 2) {
-					Invite te = lst.remove(0);
-					lst.add(te);
-				}
-				if (fin == 2) {
-					Invite te = lst.remove(lst.size() - 1);
-					lst.add(0, te);
-				}
+Invite boutTable=null;
+                for (int i = 0; i < lst.size(); i++) {
+                    if("B".equals(lst.get(i).getContrainte())) {
+                        boutTable = lst.remove(i);
+                    }
+                }
+                if(boutTable!=null){
+                    if(boutTable.getNumber()%2==0){
+                        lst=Lists.reverse(lst);
+                        lst.add(boutTable);
+                    }else{
+                        lst.add(boutTable);
+                    }
+                }
+
+
 				
                 for (Invite inviteG : lst) {
-                System.out.print(""+inviteG.getGroupe()+inviteG.getContrainte()+" - ");
+                System.out.print(""+inviteG.getGroupe()+"["+inviteG.getNumber()+"]"+inviteG.getContrainte()+" - ");
 				for (Invite invite : mapBody.get( String.valueOf(inviteG.getGroupe()))) {
 
                         resultSolution+=inviteG.getPosition().getId() + ";"+invite.getGroupe()+";"+invite.getId()+";"+invite.getNumber()+";"+inviteG.getContrainte()+"\n";
